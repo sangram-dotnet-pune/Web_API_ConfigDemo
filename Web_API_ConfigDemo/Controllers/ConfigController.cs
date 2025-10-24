@@ -6,20 +6,26 @@ namespace Web_API_ConfigDemo.Controllers
     [ApiController]
     public class ConfigController : ControllerBase
     {
-        private readonly IConfiguration _config;
+        private readonly IConfiguration _configuration;
 
         public ConfigController(IConfiguration config)
         {
-            _config = config;
+            _configuration = config;
         }
 
         [HttpGet]
         public IActionResult GetAppSettings()
         {
-            var appName = _config["AppSettings:ApplicationName"];
-            var version = _config["AppSettings:Version"];
+            var appName = _configuration["AppSettings:ApplicationName"];
+            var version = _configuration["AppSettings:Version"];
+            var maxItems = _configuration["AppSettings:MaxItems"];
 
-            return Ok(new { appName, version });
+            return Ok(new
+            {
+                ApplicationName = appName,
+                Version = version,
+                MaxItems = maxItems
+            });
         }
     }
 }

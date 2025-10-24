@@ -9,11 +9,13 @@ namespace Web_API_ConfigDemo.Controllers
     public class StronglyTypedConfigController : ControllerBase
     {
         private readonly AppSettings _appSettings;
+        private readonly IConfiguration _configuration;
 
         // Constructor injection of IOptions<AppSettings>
-        public StronglyTypedConfigController(IOptions<AppSettings> appSettings)
+        public StronglyTypedConfigController(IOptions<AppSettings> appSettings,IConfiguration configuration )
         {
             _appSettings = appSettings.Value;
+            _configuration = configuration;
         }
 
         [HttpGet]
@@ -23,8 +25,11 @@ namespace Web_API_ConfigDemo.Controllers
             {
                 ApplicationName = _appSettings.ApplicationName,
                 Version = _appSettings.Version,
-                Author = _appSettings.Author
+                Author = _appSettings.MaxItems
             });
         }
+
+
+      
     }
 }

@@ -4,6 +4,6 @@
     {
         public string ApplicationName { get; set; }
         public string Version { get; set; }
-        public string Author { get; set; }
+        public int MaxItems { get; set; }
     }
 }
